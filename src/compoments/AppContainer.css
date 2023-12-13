@@ -1,0 +1,53 @@
+/* src/components/AppContainer.css */
+.app-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #4caf50;
+    padding: 10px;
+    align-items: center;
+  }
+  
+  .project-name h1 {
+    color: white;
+    margin: 0;
+  }
+  
+  .project-name .highlight {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  nav {
+    margin-top: 10px;
+  }
+  
+  .tab-list {
+    display: flex;
+  }
+  
+  .tab-list a {
+    text-decoration: none;
+    color: black;
+    padding: 8px;
+    margin: 0 10px;
+  }
+  
+  /* .tab-list a:hover {
+    background-color: #ddd;
+  } */
+  
+  .content {
+    margin-top: 20px;
+  }
+  
+  hr {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  

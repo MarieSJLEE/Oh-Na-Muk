@@ -1,9 +1,12 @@
 // src/components/AppContainer.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css'; // 탭 스타일을 위한 CSS 파일 추가
 import MoodCheck from './MoodCheck';
 import FoodInput from './FoodInput';
-
+import './AppContainer.css';
+import Visualization from './Visualization';
 const AppContainer = () => {
   const handleMoodSubmit = async (mood) => {
     try {
@@ -37,30 +40,46 @@ const AppContainer = () => {
 
   return (
     <Router>
-      <div>
-      <nav>
-          <ul>
-            <li>
-              <Link to="/">Mood Check</Link>
-            </li>
-            <li>
-              <Link to="/food-input">Food Input</Link>
-            </li>
-          </ul>
-        </nav>
-        <hr />
-        <Routes>
-        <Route
-            path="/food-input"
-            element={<FoodInput />}
-          />
-          <Route
-            path="/"
-            element={<MoodCheck onMoodSubmit={handleMoodSubmit} />}
-          />
-        </Routes>
+      <div className="app-container">
+        <div className="header">
+          <div className="project-name">
+            <h1>
+              <span className="highlight">오</span>늘도 <span className="highlight">나</span>는{' '}
+              <span className="highlight">먹</span>는다
+            </h1>
+          </div>
+          <nav>
+            <Tabs>
+              <TabList className="tab-list">
+                <Tab>
+                  <Link to="/">Mood Check</Link>
+                </Tab>
+                <Tab>
+                  <Link to="/food-input">Food Input</Link>
+                </Tab>
+                <Tab>
+                  <Link to="/visualization">Visualization</Link>
+                </Tab>
+              </TabList>
+            </Tabs>
+          </nav>
+        </div>
+        <div className="content">
+          <Routes>
+            <Route path="/food-input" element={<FoodInput />} />
+            <Route
+              path="/"
+              element={<MoodCheck onMoodSubmit={handleMoodSubmit} />}
+            />
+            <Route
+              path="/visualization"
+              element={<Visualization />}
+            />
+          </Routes>
+        </div>
       </div>
     </Router>
-    );
-  };
-  export default AppContainer;
+  );
+};
+
+export default AppContainer;
