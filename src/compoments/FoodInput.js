@@ -5,16 +5,14 @@ const FoodInput = ({ onFoodSubmit }) => {
   const [food, setFood] = useState('');
 
   const handleFoodSubmit = async () => {
-    // 파싱된 음식 데이터를 배열로 변환
-    const foodArray = food.split(',').map(item => item.trim());
-    
     try {
+      console.log(JSON.stringify({ food })); // 확인을 위한 로그
       const response = await fetch('http://192.168.0.2:3001/saveData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ food: foodArray }),
+        body: JSON.stringify({ food }),
       });
 
       const data = await response.json();
@@ -26,9 +24,6 @@ const FoodInput = ({ onFoodSubmit }) => {
     } catch (error) {
       console.error('Error saving data:', error);
     }
-
-    // 입력된 음식 초기화
-    setFood('');
   };
 
   return (
