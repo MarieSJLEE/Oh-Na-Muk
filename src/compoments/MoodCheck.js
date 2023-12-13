@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import GoodImage from '../images/good.png';
 import BadImage from '../images/bad.png';
 import NormalImage from '../images/normal.png';
+import './sharedStyles.css'; // Import the shared styles
 
 const MoodCheck = ({ onMoodSubmit }) => {
   const [selectedMood, setSelectedMood] = useState('');
@@ -27,6 +28,7 @@ const MoodCheck = ({ onMoodSubmit }) => {
 
       if (data.success) {
         console.log('Data saved successfully!');
+        alert('Data saved successfully!');
         // 추가적인 처리나 화면 갱신이 필요하다면 여기서 처리
       }
     } catch (error) {
@@ -35,8 +37,11 @@ const MoodCheck = ({ onMoodSubmit }) => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Mood Check</h1>
+      <label>
+        How are you feeling? {selectedMood && <span>({selectedMood})</span>}
+      </label>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         {Object.entries(moodImages).map(([mood, image]) => (
           <img
@@ -44,13 +49,11 @@ const MoodCheck = ({ onMoodSubmit }) => {
             src={image}
             alt={`${mood} Mood`}
             onClick={() => setSelectedMood(mood)}
-            style={{ width: '100%', height: 'auto', cursor: 'pointer' }}
+            style={{ width: '100%', height: 'auto', cursor: 'pointer', marginBottom: '10px' }}
           />
         ))}
       </div>
-      <label>
-        How are you feeling? {selectedMood && <span>({selectedMood})</span>}
-      </label>
+      
       <button onClick={handleMoodSubmit}>Submit</button>
     </div>
   );

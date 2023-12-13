@@ -1,5 +1,6 @@
 // src/components/FoodInput.js
 import React, { useState } from 'react';
+import './sharedStyles.css'; // Import the shared styles
 
 const FoodInput = ({ onFoodSubmit }) => {
   const [food, setFood] = useState('');
@@ -19,6 +20,7 @@ const FoodInput = ({ onFoodSubmit }) => {
 
       if (data.success) {
         console.log('Data saved successfully!');
+        alert('Data saved successfully!');
         // 추가적인 처리나 화면 갱신이 필요하다면 여기서 처리
       }
     } catch (error) {
@@ -27,7 +29,7 @@ const FoodInput = ({ onFoodSubmit }) => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Food Input</h1>
       <label>
         What did you eat?{' '}

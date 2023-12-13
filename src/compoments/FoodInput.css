@@ -1,0 +1,43 @@
+/* src/components/FoodInput.css */
+.food-input-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .food-input-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .food-input-container label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .food-input-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .food-input-container button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .food-input-container button:hover {
+    background-color: #45a049;
+  }
+  

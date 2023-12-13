@@ -1,0 +1,56 @@
+/* src/components/MoodCheck.css */
+.mood-check-container {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .mood-images-container {
+    display: flex;
+  justify-content: center; /* center로 변경 */
+  margin: 20px;
+  }
+  
+  .mood-image {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .mood-image:hover {
+    transform: scale(1.1);
+  }
+  
+  .mood-image.selected {
+    border: 2px solid #4caf50;
+  }
+  
+  label {
+    display: block;
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  
+  span {
+    font-weight: bold;
+  }
+  
+  .submit-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049;
+  }
+  
