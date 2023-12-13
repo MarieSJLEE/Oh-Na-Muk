@@ -1,4 +1,5 @@
 // src/components/FoodInput.js
+// git 정리
 import React, { useState } from 'react';
 
 const FoodInput = ({ onFoodSubmit }) => {
