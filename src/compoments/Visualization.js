@@ -1,5 +1,6 @@
 // src/components/Visualization.js
 import React, { useEffect, useState } from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const Visualization = () => {
   const [data, setData] = useState([]);
@@ -30,27 +31,23 @@ const Visualization = () => {
     fetchData();
   }, []); // Empty dependency array ensures that this effect runs once after the initial render
 
+  // Extract relevant data for the chart
+  const chartData = data.map(({ Timestamp, Mood }) => ({
+    Timestamp,
+    Mood: Mood === 'positive' ? 1 : (Mood === 'negative' ? -1 : 0),
+  }));
+
   return (
     <div>
       <h1>Data Visualization</h1>
-      <table border="1">
-        <thead>
-          <tr>
-            {Object.keys(data[0] || {}).map((colName) => (
-              <th key={colName}>{colName}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((row, index) => (
-            <tr key={index}>
-              {Object.values(row).map((value, index) => (
-                <td key={index}>{value}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <LineChart width={800} height={400} data={chartData}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="Timestamp" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="Mood" stroke="#8884d8" activeDot={{ r: 8 }} />
+      </LineChart>
     </div>
   );
 };
