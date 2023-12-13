@@ -1,6 +1,6 @@
 // src/components/Visualization.js
 import React, { useEffect, useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Scatter, ScatterChart } from 'recharts';
 
 const Visualization = () => {
   const [data, setData] = useState([]);
@@ -8,7 +8,7 @@ const Visualization = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://192.168.0.2:3001/getData');
+        const response = await fetch('http://localhost:3001/getData');
         const result = await response.json();
 
         if (result.success) {
@@ -29,24 +29,35 @@ const Visualization = () => {
     };
 
     fetchData();
-  }, []); // Empty dependency array ensures that this effect runs once after the initial render
+  }, []);
 
-  // Extract relevant data for the chart
-  const chartData = data.map(({ Timestamp, Mood }) => ({
+  // Transform data for recharts
+  const chartData = data.map(({ Timestamp, Mood, Food }) => ({
     Timestamp,
     Mood: Mood === 'positive' ? 1 : (Mood === 'negative' ? -1 : 0),
+    Food: Food || null,
   }));
 
   return (
     <div>
       <h1>Data Visualization</h1>
-      <LineChart width={800} height={400} data={chartData}>
-        <CartesianGrid strokeDasharray="3 3" />
+      <LineChart
+        width={800}
+        height={400}
+        data={chartData}
+        margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
+      >
         <XAxis dataKey="Timestamp" />
-        <YAxis />
+        <YAxis type="number" domain={[-1, 1]} />
+        <CartesianGrid strokeDasharray="3 3" />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="Mood" stroke="#8884d8" activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey="Mood" stroke="#8884d8" />
+        <Scatter data={chartData.filter(({ Mood }) => Mood !== null)} fill="#8884d8" />
+        <Line type="monotone" dataKey="Food" stroke="#82ca9d" />
+        <ScatterChart>
+          <Scatter data={chartData.filter(({ Food }) => Food !== null)} fill="#82ca9d" />
+        </ScatterChart>
       </LineChart>
     </div>
   );
